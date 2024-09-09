@@ -14,7 +14,7 @@ git clone this repo
 
 #### Command line
 
-`python3 main.py <MQTT IP> <MQTT User> <MQTT Password> [--no-reset] [--debug]`
+`python3 -m src.main <MQTT IP> <MQTT User> <MQTT Password> [--no-reset] [--debug]`
 
 optional parameter:
 
@@ -23,7 +23,7 @@ optional parameter:
 
 #### Cronjob
 
-`*/5 * * * * python3 <PATH>/main.py <MQTT IP> <MQTT User> <MQTT Password> [--no-reset] [--debug]`
+`*/5 * * * * cd <PATH> ; python3 -m src.main <MQTT IP> <MQTT User> <MQTT Password> [--no-reset] [--debug]`
 
 ### Requirements
 

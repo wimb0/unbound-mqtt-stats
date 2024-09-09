@@ -1,11 +1,10 @@
 import argparse
 import logging
 import os
-import subprocess
 from socket import gethostname
 
-from get_statistics import Collector
-from send_statistics import Publisher
+from src.get_statistics import Collector
+from src.send_statistics import Publisher
 
 logger = logging.getLogger(__name__)
 
