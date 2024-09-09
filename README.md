@@ -10,7 +10,7 @@ Collects metrics from Unbound and sends them to an MQTT server
 
 #### Command line
 
-`python3 -m src.main <MQTT IP> <MQTT User> <MQTT Password>[--no-reset] [--debug]`
+`python3 -m main.py <MQTT IP> <MQTT User> <MQTT Password>[--no-reset] [--debug]`
 
 optional parameter:
 
@@ -19,7 +19,7 @@ optional parameter:
 
 #### Cronjob
 
-`05 0 * * * cd <PATH> ; python3 -m src.main <MQTT IP> <MQTT User> <MQTT Password>[--no-reset] [--debug]`
+`*/5 * * * * cd <PATH> ; python3 -m main.py <MQTT IP> <MQTT User> <MQTT Password>[--no-reset] [--debug]`
 
 ### Requirements
 
