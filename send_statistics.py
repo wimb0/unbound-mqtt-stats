@@ -14,7 +14,7 @@ class Publisher:
         __topic__ = f"unbound/stats/{get_hostname('lower')}"
 
         try:
-            subprocess.run(["mosquitto_pub", "-h", f"{receiver_ip}", "-u", f"{receiver_user}", "-P", f"{receiver_pass}","-q", "1", "-t",>
+            subprocess.run(["mosquitto_pub", "-h", f"{receiver_ip}", "-u", f"{receiver_user}", "-P", f"{receiver_pass}","-q", "1", "-t", f"{__topic__}", "-m", f"{stats}"])
             logger.debug("Send statistics to MQTT broker successful.")
             success = True
         except subprocess.CalledProcessError as e:
