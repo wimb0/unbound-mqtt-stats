@@ -19,7 +19,7 @@ optional parameter:
 
 #### Cronjob
 
-`05 0 * * * cd <PATH> ; python3 -m src.main <IP Address> [--no-reset] [--debug]`
+`05 0 * * * cd <PATH> ; python3 -m src.main <MQTT IP> <MQTT User> <MQTT Password>[--no-reset] [--debug]`
 
 ### Requirements
 
