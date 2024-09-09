@@ -2,22 +2,22 @@ import argparse
 import logging
 import os
 import subprocess
+from socket import gethostname
 
 from get_statistics import Collector
 from send_statistics import Publisher
-from get_hostname import get_hostname
 
 logger = logging.getLogger(__name__)
 
 
 def main(receiver_ip, receiver_user, receiver_pass, reset_unbound_stats: bool):
-    publisher_cntnr = f"mosquitto_{get_hostname('lower')}"
+    unbound_hostname = f"{gethostname().lower()}"
 
     logger.debug(f"Param reset_unbound_stats = {reset_unbound_stats}")
     unbound_stats = Collector.get_statistics(reset_unbound_stats)
     if unbound_stats is not None:
         statistic_sent = Publisher.send_statistics(
-            receiver_ip, receiver_user, receiver_pass, unbound_stats, publisher_cntnr
+            receiver_ip, receiver_user, receiver_pass, unbound_stats, unbound_hostname
         )
 
         if statistic_sent:
