@@ -14,7 +14,7 @@ class Publisher:
         __topic__ = f"unbound/stats/{get_hostname('lower')}"
 
         try:
-            mqttsend = subprocess.run((["mosquitto_pub", "-h", f"{receiver_ip}", "-u", f"{receiver_user}", "-P", f"{receiver_pass}","-q">
+            mqttsend = subprocess.run((["mosquitto_pub", "-h", f"{receiver_ip}", "-u", f"{receiver_user}", "-P", f"{receiver_pass}","-q", "1", "-t", f"{__topic__}", "-m", f"{stats}"]),stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             mqttsend.check_returncode()
             logger.debug("Send statistics to MQTT broker successful.")
             success = True
