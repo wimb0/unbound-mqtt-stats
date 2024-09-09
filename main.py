@@ -15,11 +15,15 @@ def main(receiver_ip, receiver_user, receiver_pass, reset_unbound_stats: bool):
 
     logger.debug(f"Param reset_unbound_stats = {reset_unbound_stats}")
     unbound_stats = Collector.get_statistics(reset_unbound_stats)
-    statistic_sent = Publisher.send_statistics(receiver_ip, receiver_user, receiver_pass, unbound_stats, publisher_cntnr)
-    if statistic_sent:
-        logger.debug(f"Unbound statistics sent successful.")
+    if unbound_stats is not None:
+        statistic_sent = Publisher.send_statistics(receiver_ip, receiver_user, receiver_pass, unbound_stats, publisher_cntnr)
+
+        if statistic_sent:
+            logger.debug(f"Unbound statistics sent successful.")
+        else:
+            logger.error(f"Unbound statistics send failed. Check log for details.")
     else:
-        logger.error(f"Unbound statistics failed. Check log for details.")
+        logger.error(f"Unbound statistics gather failed. Check log for details.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -40,10 +44,4 @@ if __name__ == "__main__":
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     main(args.receiver_ip, args.receiver_user, args.receiver_pass, args.reset_unbound_stats)
-
-
-
-
-
-
 
