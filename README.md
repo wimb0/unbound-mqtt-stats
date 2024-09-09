@@ -24,4 +24,3 @@ optional parameter:
 ### Requirements
 
 * Python 3.8 or higher
-* 
