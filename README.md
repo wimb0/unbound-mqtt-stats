@@ -30,3 +30,6 @@ optional parameter:
 * Python 3.8 or higher
 * mosquitto-clients
 * unbound-control
+
+###
+Based on [unbound-statistics-publisher](https://github.com/Qaldak/unbound-statistics-publisher) by [@qaldak](https://github.com/qaldak)
