@@ -29,3 +29,4 @@ optional parameter:
 
 * Python 3.8 or higher
 * mosquitto-clients
+* unbound-control
