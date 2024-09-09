@@ -6,7 +6,8 @@ Collects metrics from Unbound and sends them to an MQTT server
 
 ## Getting started
 
-Install python3, mosquitto-clients, git
+Install python3, mosquitto-clients, git.
+
 git clone this repo
 
 ### Execute
