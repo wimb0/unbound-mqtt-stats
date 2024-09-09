@@ -1,8 +1,6 @@
 import logging
 import subprocess
 
-from get_hostname import get_hostname
-
 logger = logging.getLogger(__name__)
 
 
@@ -13,9 +11,9 @@ class Publisher:
         receiver_user: str,
         receiver_pass: str,
         stats: str,
-        publisher_cntnr: str,
+        unbound_hostname: str,
     ) -> bool:
-        __topic__ = f"unbound/stats/{get_hostname('lower')}"
+        __topic__ = f"unbound/stats/{unbound_hostname}"
 
         try:
             mqttsend = subprocess.run(
