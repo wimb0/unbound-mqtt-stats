@@ -14,12 +14,13 @@ class Publisher:
         __topic__ = f"unbound/stats/{get_hostname('lower')}"
 
         try:
-            subprocess.run(["mosquitto_pub", "-h", f"{receiver_ip}", "-u", f"{receiver_user}", "-P", f"{receiver_pass}","-q", "1", "-t", f"{__topic__}", "-m", f"{stats}"])
+            mqttsend = subprocess.run((["mosquitto_pub", "-h", f"{receiver_ip}", "-u", f"{receiver_user}", "-P", f"{receiver_pass}","-q">
+            mqttsend.check_returncode()
             logger.debug("Send statistics to MQTT broker successful.")
             success = True
         except subprocess.CalledProcessError as e:
             logger.error(
-                f"Send statistics to MQTT broker failed: Exit code {e.return_code}, {e.stderr.strip()}")
+                f"Send statistics to MQTT broker failed: Exit code {e.returncode}, {e.stderr.strip()}")
             logger.error(
                 f"Exception: {e}")
             success = False
