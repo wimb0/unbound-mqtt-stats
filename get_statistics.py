@@ -34,11 +34,22 @@ class Collector:
 
         logger.debug(f"Set <stats_param> = '{stats_param}'")
 
-        stats = (subprocess.run(["unbound-control", stats_param], stdout = subprocess.PIPE, universal_newlines = True))
-        stats_json = Collector.__convert_to_json(stats.stdout)
-        if stats_json:
-            logger.debug(type(stats_json))
-            logger.debug(f"Received unbound statistics: {stats_json}")
-            return stats_json
-        else:
-            logger.error(f"No json statistics available. type = {type(stats_json)}, payload = {stats_json}")
+        try:
+            stats = subprocess.run(["/usr/sbin/unbound-control", stats_param], stdout = subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines = True)
+            stats.check_returncode()
+            success = True
+        except subprocess.CalledProcessError as e:
+            logger.error(
+                f"Get Unbound stats from unbound-control failed: Exit code {e.returncode}, {e.stderr.strip()}")
+            logger.error(
+                f"Exception: {e}")
+            success = False
+
+        if success == True:
+            stats_json = Collector.__convert_to_json(stats.stdout)
+            if stats_json:
+                logger.debug(type(stats_json))
+                logger.debug(f"Received unbound statistics: {stats_json}")
+                return stats_json
+            else:
+                logger.error(f"No json statistics available. type = {type(stats_json)}, payload = {stats_json}")
